@@ -49,14 +49,20 @@
 						<input type="text" name="date" id="date" readonly="readonly">
 						<!-- 히든으로 공간 데이터 넘겨줌 -->
 						<input type="text" name="roomId" id="roomId" readonly="readonly">
-						&emsp;&emsp; 시간 : <select name="roomtime">
-							<option value="">------시간 선택------</option>
-							<option value="">1</option>
-							<option value="">2</option>
-							<option value="">3</option>
-							<option value="">4</option>
-							<option value="">5</option>
-						</select>
+						<div>시간</div>
+						<div>
+						<input type="checkbox" name="time" id="chk1" value="1" onclick="checkLimit(this)" >AM 09:00 ~ AM 10:00<br>
+						<input type="checkbox" name="time" id="chk1" value="2" onclick="checkLimit(this)" >AM 10:00 ~ AM 11:00<br>
+						<input type="checkbox" name="time" id="chk1" value="3" onclick="checkLimit(this)" >AM 11:00 ~ AM 12:00<br>
+						<input type="checkbox" name="time" id="chk1" value="4" onclick="checkLimit(this)" >AM 12:00 ~ PM 01:00<br>
+						<input type="checkbox" name="time" id="chk1" value="5" onclick="checkLimit(this)" >PM 01:00 ~ PM 02:00<br>
+						<input type="checkbox" name="time" id="chk1" value="6" onclick="checkLimit(this)" >PM 02:00 ~ PM 03:00<br>
+						<input type="checkbox" name="time" id="chk1" value="7" onclick="checkLimit(this)" >PM 03:00 ~ PM 04:00<br>
+						<input type="checkbox" name="time" id="chk1" value="8" onclick="checkLimit(this)" >PM 04:00 ~ PM 05:00<br>
+						<input type="checkbox" name="time" id="chk1" value="9" onclick="checkLimit(this)" >PM 05:00 ~ PM 06:00<br>
+						<button class="subreset" type="button" onclick="chkContinuity()" >대관 신청</button>
+						<button class="subreset" type="reset" name="reset" onclick="resetCount()">선택 취소</button>
+						</div>
 					</div>
 					<!-- <input class="btn btncalender" type="submit" value="결정하기"> -->
 				</form>

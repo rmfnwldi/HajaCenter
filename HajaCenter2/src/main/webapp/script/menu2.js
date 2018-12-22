@@ -10,6 +10,10 @@ var weekday = Calendar.getDay(); // 요일 0~6
 var re_month = ReCalendar.getMonth();
 var re_year = ReCalendar.getFullYear();
 
+
+
+
+
 function makeCalendar() {
 
 	// getDay() 는 요일을 숫자로 반환한다
@@ -182,6 +186,146 @@ function makeCalendar() {
 	$("table").html(str);
 
 }
+
+
+
+
+
+
+
+
+
+
+
+//선택 가능한 checkbox의 갯수
+var maxChecked = 3;
+
+//선택한 checkbox의 총갯수
+var totalChecked = 0;
+
+//checkbox총 선택수를 3개로 제한
+function checkLimit(obj) {
+  if (obj.checked == true){
+      totalChecked += 1;
+  	chkRow = obj.checked.value;
+  }else{
+      totalChecked -= 1;
+  }
+  if (totalChecked > maxChecked) {
+      alert ("최대 3개 까지만 가능합니다.");
+      obj.checked = false;
+ 		totalChecked -= 1;
+  }
+  
+}
+
+//취소 선택시 선택한 수를 0으로
+function resetCount(){
+  totalChecked = 0;
+}
+
+//대관신청 클릭시 연속된 시간인지 날짜와 방이 선택됐는지 확인
+function chkContinuity() {
+	// 체크박스를 가져옴
+	var chk = document.getElementsByName("time");
+	
+	//체크박스의 전체 개수
+	var len = chk.length;
+	
+	//체크된 체크박스의 value를 담기위한 변수
+	var chkRow;
+	
+	for(var i=0; i<len; i++){
+		//체크가 되어있는 값 구분
+		if(chk[i].checked == true){
+			 //value를 담음
+			chkRow = chk[i].value;
+			break;
+			}
+		}
+	
+	//배열로 넣어야되기 때문에 숫자 다시설정
+	var select1 = (parseInt(chkRow) - 1);
+	var select2 = (parseInt(chkRow));	
+	var select3 = (parseInt(chkRow) + 1);
+	
+	//연속으로 체크되었는지 확인 선택된갯수로 switch문
+	//날짜와 방이 선택됐는지 확인 선택 되었으면 submit
+	//연속으로 선택하지 않으면  전체버튼을 해제하고 totalChecked 초기화	
+	switch (totalChecked) {
+	case 0:
+		alert ("시간을 선택하세요");
+		break;
+		
+	case 1:
+		if(submitCheck != null){
+			calendar.submit();
+		}else{
+			alert ("날짜와 방을 선택해주세요");
+		}
+		break;
+		
+	case 2:
+		if(chk[select1].checked == true && chk[select2].checked == true){
+			if(submitCheck != null){
+				calendar.submit();
+			}else{
+				alert ("날짜와 방을 선택해주세요");
+			}
+			break;
+		}else {
+			alert ("시간이 연속되게 선택해주세요");
+			for(i = 0; i < len; i++) {
+				chk[i].checked = false;
+			}
+			totalChecked = 0;
+			break;
+		}
+		break;
+		
+	case 3:
+		if(chk[select1].checked == true && chk[select2].checked == true && chk[select3].checked == true){
+			if(submitCheck != null){
+				calendar.submit();
+			}else{
+				alert ("날짜와 방을 선택해주세요");
+			}
+			break;
+		}else {
+			alert ("시간이 연속되게 선택해주세요");
+			for(i = 0; i < len; i++) {
+				chk[i].checked = false;
+			}
+			totalChecked = 0;
+			break;
+		}
+		break;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $(function() {
 
